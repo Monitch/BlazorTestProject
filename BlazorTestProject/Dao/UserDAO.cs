@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace BlazorTestProject.Dao
 {
     public class UserDAO
@@ -120,7 +117,6 @@ namespace BlazorTestProject.Dao
                     while (number.Read())
                     {
                         User user = new User();
-                        user.Id = number.GetInt32(0);
                         user.Name = number.GetString(1);
                         user.Number = number.GetString(2);
                         user.Email = number.GetString(3);
