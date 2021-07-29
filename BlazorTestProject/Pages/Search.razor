@@ -1,0 +1,81 @@
+﻿@page "/search"
+
+<h1>Search</h1>
+<br />
+<input placeholder="Enter your value" id="value" @bind-value="@value" />
+@foreach (var item in new string[] { "Name", "Number", "Email"  })
+{
+    <div>
+        <input type="radio" value="@item" @onchange="RadioSelection" checked=@(RadioValue.Equals(item,StringComparison.OrdinalIgnoreCase)) />
+        <label for="@item">@item</label>
+    </div>
+}
+<button type="submit" @onclick="Click">Submit</button>
+
+
+<div class="container">
+    <br />
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                @if (filtratedList.Any())
+                {
+                    <th>Name</th>
+                    <th>Number</th>
+                    <th>Email</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in filtratedList)
+            {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Number</td>
+                <td>@user.Email</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code{
+    private string value { get; set; }
+    UserDAO dAO = new UserDAO();
+    public List<User> users = new List<User>();
+    public List<User> filtratedList = new List<User>();
+    string RadioValue = "";
+
+    protected override void OnInitialized()
+    {
+        users = dAO.takeList();
+    }
+    void RadioSelection(ChangeEventArgs args)
+    {
+        RadioValue = args.Value.ToString();
+    }
+
+    void Click()
+    {
+        filtratedList.Clear();
+        switch (RadioValue)
+        {
+            case "Name":
+                foreach (var user in users)
+                    if (user.Name.ToLower() == @value.ToLower())
+                        filtratedList.Add(user);
+                break;
+            case "Email":
+                foreach (var user in users)
+                    if (user.Email.ToLower() == @value.ToLower())
+                        filtratedList.Add(user);
+                break;
+            case "Number":
+                foreach (var user in users)
+                    if (user.Number == @value)
+                        filtratedList.Add(user);
+                break;
+        }
+        value = "";
+    }
+}

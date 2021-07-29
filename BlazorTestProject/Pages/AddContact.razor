@@ -1,0 +1,38 @@
+﻿@page "/new"
+<h1>Add new Contact</h1>
+
+<EditForm Model="@user" OnValidSubmit="addUser">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div>
+        <label style="width:100px" for="name">Enter name</label>
+        <InputText id="name" @bind-Value="user.Name" />
+    </div>
+    <div>
+        <label style="width:100px" for="number">Enter number</label>
+        <InputText id="number" @bind-Value="user.Number" />
+    </div>
+    <div>
+        <label style="width:100px" for="email">Enter email</label>
+        <InputText id="email" @bind-Value="user.Email" />
+    </div>
+    <button style="width:fit-content" type="submit">Submit</button>
+</EditForm>
+
+@if (putMessage != "")
+{
+    <h5>Person @putMessage Added</h5>
+}
+
+@code {
+    private User user = new User();
+    UserDAO dAO = new UserDAO();
+    String putMessage = "";
+
+    private void addUser()
+    {
+        dAO.save(user);
+        putMessage = user.Name;
+        user = new User();
+    }
+}
