@@ -45,6 +45,8 @@
 
     public void removeUser(int id)
     {
+        users.Clear();
         dAO.remove(id);
+        users = dAO.takeList();
     }
 }
