@@ -18,7 +18,7 @@
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                @if (filtratedList.Any())
+                @if (users.Any())
                 {
                     <th>Name</th>
                     <th>Number</th>
@@ -27,7 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in filtratedList)
+            @foreach (var user in users)
             {
             <tr>
                 <td>@user.Name</td>
@@ -40,16 +40,11 @@
 </div>
 
 @code{
-    private string value { get; set; }
     UserDAO dAO = new UserDAO();
     public List<User> users = new List<User>();
-    public List<User> filtratedList = new List<User>();
     string RadioValue = "";
+    string value = "";
 
-    protected override void OnInitialized()
-    {
-        users = dAO.takeList();
-    }
     void RadioSelection(ChangeEventArgs args)
     {
         RadioValue = args.Value.ToString();
@@ -57,25 +52,7 @@
 
     void Click()
     {
-        filtratedList.Clear();
-        switch (RadioValue)
-        {
-            case "Name":
-                foreach (var user in users)
-                    if (user.Name.ToLower() == @value.ToLower())
-                        filtratedList.Add(user);
-                break;
-            case "Email":
-                foreach (var user in users)
-                    if (user.Email.ToLower() == @value.ToLower())
-                        filtratedList.Add(user);
-                break;
-            case "Number":
-                foreach (var user in users)
-                    if (user.Number == @value)
-                        filtratedList.Add(user);
-                break;
-        }
-        value = "";
+        users.Clear();
+        users = dAO.filtrate(RadioValue, value);
     }
 }
