@@ -15,7 +15,7 @@ namespace BlazorTestProject.Dao
             try
             {
                 connection.Open();
-                string sqlExpression = string.Format("SELECT * FROM [User]");
+                string sqlExpression = string.Format("SELECT * FROM [User] ORDER BY Name ASC");
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 SqlDataReader number = command.ExecuteReader();
                 if (number.HasRows)
@@ -106,7 +106,7 @@ namespace BlazorTestProject.Dao
         public List<User> filtrate(String column, String parametr)
         {
             List<User> people = new List<User>();
-            string sqlExpression = String.Format("SELECT * FROM [User] where {0} LIKE '%{1}%'",column,parametr);
+            string sqlExpression = String.Format("SELECT * FROM [User] where {0} LIKE '%{1}%' ORDER BY Name ASC", column,parametr);
             try
             {
                 connection.Open();
@@ -135,6 +135,36 @@ namespace BlazorTestProject.Dao
             }
             return people;
 
+        }
+        public User getParametr(int id)
+        {
+            User contact = new User();
+            try
+            {
+                connection.Open();
+                string sqlExpression = string.Format("SELECT * FROM [User] WHERE id = {0}",id);
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader selectRes = command.ExecuteReader();
+                if (selectRes.HasRows)
+                {
+                    while (selectRes.Read())
+                    {
+                        contact.Name = selectRes.GetString(1);
+                        contact.Number = selectRes.GetString(2);
+                        contact.Email = selectRes.GetString(3);
+                    }
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return contact;
         }
     }
 }

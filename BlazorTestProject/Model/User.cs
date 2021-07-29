@@ -6,7 +6,7 @@ namespace BlazorTestProject.Model
     {
         public int Id { get; set; }
         [Required]
-        [StringLength(16, ErrorMessage = "Identifier too long")]
+        [StringLength(30, ErrorMessage = "Name too long")]
         public string Name { get; set; }
         [Required]
         [EmailAddress(ErrorMessage = "Enter Email")]
