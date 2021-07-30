@@ -23,18 +23,18 @@
 
     @if (putMessage != "")
     {
-        <h5>@putMessage Added</h5>
+        <h5 style="text-align: center">@putMessage Added</h5>
     }
 
-    @code {
-        private User user = new User();
-        UserDAO dAO = new UserDAO();
-        String putMessage = "";
+@code {
+    User user = new User();
+    UserDAO dAO = new UserDAO();
+    String putMessage = "";
 
-        private void addUser()
-        {
-            dAO.saveUser(user);
-            putMessage = user.Name;
-            user = new User();
-        }
+    void addUser()
+    {
+        dAO.saveUser(user);
+        putMessage = user.Name;
+        user = new User();
     }
+}

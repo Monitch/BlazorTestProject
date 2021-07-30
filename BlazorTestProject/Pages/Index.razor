@@ -40,13 +40,13 @@
 
 @code {
     UserDAO dAO = new UserDAO();
-    public List<User> users = new List<User>();
+    List<User> users = new List<User>();
     protected override void OnInitialized()
     {
         users = dAO.takeListOfUser();
     }
 
-    public void removeUser(int id)
+    void removeUser(int id)
     {
         users.Clear();
         dAO.removeUser(id);

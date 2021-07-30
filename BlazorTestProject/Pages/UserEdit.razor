@@ -23,7 +23,7 @@
 @code {
     [Parameter]
     public String Id { set; get; }
-    private User user = new User();
+    User user = new User();
     UserDAO dAO = new UserDAO();
 
 
@@ -31,7 +31,7 @@
     {
         user = dAO.getUserForEditing(Int32.Parse(Id));
     }
-    private void updateUser()
+    void updateUser()
     {
         dAO.updateUser(Int32.Parse(Id), user);
         NavigationManager.NavigateTo("/");

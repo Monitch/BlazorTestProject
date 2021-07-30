@@ -17,20 +17,20 @@ namespace BlazorTestProject.Dao
                 connection.Open();
                 string sqlExpression = string.Format("SELECT * FROM [User] ORDER BY Name ASC");
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
-                SqlDataReader number = command.ExecuteReader();
-                if (number.HasRows)
+                SqlDataReader selectRes = command.ExecuteReader();
+                if (selectRes.HasRows)
                 {
-                    while (number.Read())
+                    while (selectRes.Read())
                     {
                         User user = new User();
-                        user.Id = number.GetInt32(0);
-                        user.Name = number.GetString(1);
-                        user.Number = number.GetString(2);
-                        user.Email = number.GetString(3);
+                        user.Id = selectRes.GetInt32(0);
+                        user.Name = selectRes.GetString(1);
+                        user.Number = selectRes.GetString(2);
+                        user.Email = selectRes.GetString(3);
                         people.Add(user);
                     }
                 }
-                
+
             }
             catch (SqlException ex)
             {
@@ -46,7 +46,7 @@ namespace BlazorTestProject.Dao
         public void saveUser(User contact)
         {
             string sqlExpression = String.Format("INSERT INTO [User] (Name, Number, Email) VALUES ('{0}', '{1}', '{2}')",
-                contact.Name,contact.Number,contact.Email);
+                contact.Name, contact.Number, contact.Email);
             try
             {
                 connection.Open();
@@ -65,7 +65,7 @@ namespace BlazorTestProject.Dao
         }
         public void removeUser(int id)
         {
-            string sqlExpression = String.Format("DELETE FROM [User] WHERE id='{0}'",id);
+            string sqlExpression = String.Format("DELETE FROM [User] WHERE id='{0}'", id);
             try
             {
                 connection.Open();
@@ -106,7 +106,7 @@ namespace BlazorTestProject.Dao
         public List<User> findUser(String column, String parametr)
         {
             List<User> people = new List<User>();
-            string sqlExpression = String.Format("SELECT * FROM [User] where {0} LIKE '%{1}%' ORDER BY Name ASC", column,parametr);
+            string sqlExpression = String.Format("SELECT * FROM [User] where {0} LIKE '%{1}%' ORDER BY Name ASC", column, parametr);
             try
             {
                 connection.Open();
@@ -123,7 +123,6 @@ namespace BlazorTestProject.Dao
                         people.Add(user);
                     }
                 }
-
             }
             catch (SqlException ex)
             {
@@ -134,15 +133,15 @@ namespace BlazorTestProject.Dao
                 connection.Close();
             }
             return people;
-
         }
+
         public User getUserForEditing(int id)
         {
             User contact = new User();
             try
             {
                 connection.Open();
-                string sqlExpression = string.Format("SELECT * FROM [User] WHERE id = {0}",id);
+                string sqlExpression = string.Format("SELECT * FROM [User] WHERE id = {0}", id);
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 SqlDataReader selectRes = command.ExecuteReader();
                 if (selectRes.HasRows)
@@ -154,7 +153,6 @@ namespace BlazorTestProject.Dao
                         contact.Email = selectRes.GetString(3);
                     }
                 }
-
             }
             catch (SqlException ex)
             {
