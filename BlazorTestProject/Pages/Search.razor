@@ -14,6 +14,9 @@
 </div>
 
 
+@if (!@check) {
+    <h2 style="text-align: center">Contact not found</h2>
+}
 <div class="container">
     <table class="table table-striped table-bordered">
         <thead>
@@ -44,6 +47,7 @@
     public List<User> users = new List<User>();
     string RadioValue = "";
     string value = "";
+    bool check = true;
 
     void RadioSelection(ChangeEventArgs args)
     {
@@ -53,6 +57,9 @@
     void Click()
     {
         users.Clear();
-        users = dAO.filtrate(RadioValue, value);
+        users = dAO.findUser(RadioValue, value);
+        check = true;
+        if (!users.Any())
+            check = false;
     }
 }

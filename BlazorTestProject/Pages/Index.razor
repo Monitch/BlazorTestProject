@@ -43,13 +43,13 @@
     public List<User> users = new List<User>();
     protected override void OnInitialized()
     {
-        users = dAO.takeList();
+        users = dAO.takeListOfUser();
     }
 
     public void removeUser(int id)
     {
         users.Clear();
-        dAO.remove(id);
-        users = dAO.takeList();
+        dAO.removeUser(id);
+        users = dAO.takeListOfUser();
     }
 }

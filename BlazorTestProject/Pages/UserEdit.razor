@@ -29,11 +29,11 @@
 
     protected override void OnInitialized()
     {
-        user = dAO.getParametr(Int32.Parse(Id));
+        user = dAO.getUserForEditing(Int32.Parse(Id));
     }
     private void updateUser()
     {
-        dAO.updateContact(Int32.Parse(Id), user);
+        dAO.updateUser(Int32.Parse(Id), user);
         NavigationManager.NavigateTo("/");
     }
 }

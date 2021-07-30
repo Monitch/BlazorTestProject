@@ -23,7 +23,7 @@
 
     @if (putMessage != "")
     {
-        <h5>Contact Added</h5>
+        <h5>@putMessage Added</h5>
     }
 
     @code {
@@ -33,7 +33,7 @@
 
         private void addUser()
         {
-            dAO.save(user);
+            dAO.saveUser(user);
             putMessage = user.Name;
             user = new User();
         }

@@ -9,7 +9,7 @@ namespace BlazorTestProject.Dao
         static string connectionString = "Data Source=DESKTOP-3D3OK6O\\MSQL;Initial Catalog=contact;Integrated Security=True";
         SqlConnection connection = new SqlConnection(connectionString);
 
-        public List<User> takeList()
+        public List<User> takeListOfUser()
         {
             List<User> people = new List<User>();
             try
@@ -43,7 +43,7 @@ namespace BlazorTestProject.Dao
             return people;
         }
 
-        public void save(User contact)
+        public void saveUser(User contact)
         {
             string sqlExpression = String.Format("INSERT INTO [User] (Name, Number, Email) VALUES ('{0}', '{1}', '{2}')",
                 contact.Name,contact.Number,contact.Email);
@@ -63,7 +63,7 @@ namespace BlazorTestProject.Dao
                 connection.Close();
             }
         }
-        public void remove(int id)
+        public void removeUser(int id)
         {
             string sqlExpression = String.Format("DELETE FROM [User] WHERE id='{0}'",id);
             try
@@ -83,7 +83,7 @@ namespace BlazorTestProject.Dao
             }
 
         }
-        public void updateContact(int id, User contact)
+        public void updateUser(int id, User contact)
         {
             string sqlExpression = String.Format("UPDATE [User] set Name = '{1}', Number = '{2}', Email = '{3}' WHERE id = '{0}'",
                 id, contact.Name, contact.Number, contact.Email);
@@ -103,7 +103,7 @@ namespace BlazorTestProject.Dao
                 connection.Close();
             }
         }
-        public List<User> filtrate(String column, String parametr)
+        public List<User> findUser(String column, String parametr)
         {
             List<User> people = new List<User>();
             string sqlExpression = String.Format("SELECT * FROM [User] where {0} LIKE '%{1}%' ORDER BY Name ASC", column,parametr);
@@ -136,7 +136,7 @@ namespace BlazorTestProject.Dao
             return people;
 
         }
-        public User getParametr(int id)
+        public User getUserForEditing(int id)
         {
             User contact = new User();
             try
