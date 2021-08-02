@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject IJSRuntime JsRuntime
 
 <h1 style="text-align: center">Contact</h1>
 
@@ -34,8 +35,9 @@
         </table>
     </div>
 }
-@if (!users.Any()){ 
-<h5>You don't have contact</h5>
+@if (!users.Any())
+{
+    <h5>You don't have contact</h5>
 }
 
 @code {
@@ -46,10 +48,11 @@
         users = dAO.takeListOfUser();
     }
 
-    void removeUser(int id)
+     void removeUser(int id)
     {
-        users.Clear();
+
         dAO.removeUser(id);
+        users.Clear();
         users = dAO.takeListOfUser();
     }
 }

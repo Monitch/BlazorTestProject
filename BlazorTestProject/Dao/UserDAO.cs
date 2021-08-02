@@ -30,7 +30,6 @@ namespace BlazorTestProject.Dao
                         people.Add(user);
                     }
                 }
-
             }
             catch (SqlException ex)
             {
@@ -45,61 +44,86 @@ namespace BlazorTestProject.Dao
 
         public void saveUser(User contact)
         {
-            string sqlExpression = String.Format("INSERT INTO [User] (Name, Number, Email) VALUES ('{0}', '{1}', '{2}')",
-                contact.Name, contact.Number, contact.Email);
-            try
+            string sqlExpression = "addContact";
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlParameter nameParam = new SqlParameter
+                {
+                    ParameterName = "@name",
+                    Value = contact.Name
+                };
+                command.Parameters.Add(nameParam);
+                SqlParameter numberParam = new SqlParameter
+                {
+                    ParameterName = "@number",
+                    Value = contact.Number
+                };
+                command.Parameters.Add(numberParam);
+                SqlParameter emailParam = new SqlParameter
+                {
+                    ParameterName = "@email",
+                    Value = contact.Email
+                };
+                command.Parameters.Add(emailParam);
                 command.ExecuteNonQuery();
-
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
                 connection.Close();
             }
         }
         public void removeUser(int id)
         {
-            string sqlExpression = String.Format("DELETE FROM [User] WHERE id='{0}'", id);
-            try
+            string sqlExpression = "deleteContact";
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlParameter idParam = new SqlParameter
+                {
+                    ParameterName = "@id",
+                    Value = id
+                };
+                command.Parameters.Add(idParam);
                 command.ExecuteNonQuery();
-
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
                 connection.Close();
             }
 
         }
-        public void updateUser(int id, User contact)
+        public void updateUser(User contact)
         {
-            string sqlExpression = String.Format("UPDATE [User] set Name = '{1}', Number = '{2}', Email = '{3}' WHERE id = '{0}'",
-                id, contact.Name, contact.Number, contact.Email);
-            try
+            string sqlExpression = "updateContact";
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlParameter idParam = new SqlParameter
+                {
+                    ParameterName = "@id",
+                    Value = contact.Id
+                };
+                SqlParameter nameParam = new SqlParameter
+                {
+                    ParameterName = "@name",
+                    Value = contact.Name
+                };
+                SqlParameter numberParam = new SqlParameter
+                {
+                    ParameterName = "@number",
+                    Value = contact.Number
+                };
+                SqlParameter emailParam = new SqlParameter
+                {
+                    ParameterName = "@email",
+                    Value = contact.Email
+                };
+                command.Parameters.Add(idParam);
+                command.Parameters.Add(nameParam);
+                command.Parameters.Add(numberParam);
+                command.Parameters.Add(emailParam);
                 command.ExecuteNonQuery();
-
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
                 connection.Close();
             }
         }
@@ -148,6 +172,7 @@ namespace BlazorTestProject.Dao
                 {
                     while (selectRes.Read())
                     {
+                        contact.Id = selectRes.GetInt32(0);
                         contact.Name = selectRes.GetString(1);
                         contact.Number = selectRes.GetString(2);
                         contact.Email = selectRes.GetString(3);
