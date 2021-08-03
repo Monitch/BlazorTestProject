@@ -1,56 +1,41 @@
 ﻿@page "/"
-@inject IJSRuntime JsRuntime
+@inject NavigationManager NavigationManager
 
 <h1 style="text-align: center">Contact</h1>
+<h2>@test</h2>
 
-@if (users.Any())
-{
-    <div class="container">
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Number</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var user in users)
-                {
-                    <tr>
-                        <td>@user.Name</td>
-                        <td>@user.Number</td>
-                        <td>@user.Email</td>
-                        <td>
-                            <a href="@($"useredit/{user.Id}")"
-                               class="btn btn-primary m-1">Edit</a>
-                            <button class="btn-danger"
-                                    @onclick="(() => removeUser(user.Id))">
-                                Remove
-                            </button>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-}
-@if (!users.Any())
-{
-    <h5>You don't have contact</h5>
-}
+<RadzenDataGrid AllowColumnResize="true" PageSize="6" AllowPaging="true" Data="@users" TItem="User" ColumnWidth="300px">
+    <Columns>
+        <RadzenDataGridColumn TItem="User" Property="Name" Filterable="false" Title="Name" Frozen="true" Width="50px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn TItem="User" Property="Number" Filterable="false" Title="Number" Frozen="true" Width="50px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn TItem="User" Property="Email" Filterable="false" Title="Email" Frozen="true" Width="50px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn TItem="User" Property="Id" Filterable="false" Frozen="true" Width="50px" TextAlign="TextAlign.Center">
+            <Template Context="data">
+                <RadzenButton ButtonStyle="ButtonStyle.Secondary" Click=@(() =>editUser(data.Id))  Text="Edit" />
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="User" Property="Id" Frozen="true" Width="50px">
+            <Template Context="data">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Click=@(() => removeUser(data.Id))  Text="Remove" />
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
 
 @code {
+    string test = "";
     UserDAO dAO = new UserDAO();
     List<User> users = new List<User>();
     protected override void OnInitialized()
     {
         users = dAO.takeListOfUser();
     }
-
-     void removeUser(int id)
+    void editUser(int id)
     {
-
+        NavigationManager.NavigateTo("/useredit/" + id.ToString());
+    }
+    void removeUser(int id)
+    {
         dAO.removeUser(id);
         users.Clear();
         users = dAO.takeListOfUser();

@@ -130,7 +130,8 @@ namespace BlazorTestProject.Dao
         public List<User> findUser(String column, String parametr)
         {
             List<User> people = new List<User>();
-            string sqlExpression = String.Format("SELECT * FROM [User] where {0} LIKE '%{1}%' ORDER BY Name ASC", column, parametr);
+            string sqlExpression = String.Format("SELECT * FROM [User] where {0} LIKE '%{1}%' ORDER BY Name ASC", 
+                column, parametr);
             try
             {
                 connection.Open();
