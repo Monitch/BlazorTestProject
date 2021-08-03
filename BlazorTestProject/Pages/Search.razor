@@ -1,16 +1,18 @@
 ﻿@page "/search"
 
 <h1 style="text-align: center">Search</h1>
-<div style="margin-left:40px;">
-    <input placeholder="Enter your value" id="value" @bind-value="@value" />
+<div class="searchForm">
+        <input class="searchInput" placeholder="Enter your value" id="value" @bind-value="@value" />
     @foreach (var item in new string[] { "Name", "Number", "Email" })
     {
-        <div>
+        <div class="radioGroup">
             <input type="radio" value="@item" @onchange="RadioSelection" checked=@(RadioValue.Equals(item,StringComparison.OrdinalIgnoreCase)) />
             <label for="@item">@item</label>
         </div>
     }
-    <button type="submit" @onclick="Click">Submit</button>
+<div class="btnMother">
+    <button class="btnSubmit" type="submit" @onclick="Click">Submit</button>
+</div>
 </div>
 
 

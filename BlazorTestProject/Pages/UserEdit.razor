@@ -2,23 +2,25 @@
 @inject NavigationManager NavigationManager
 <h1 style="text-align: center">Edit contact</h1>
 
-<EditForm Model="@user" OnValidSubmit="updateUser">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div>
-        <label style="width:100px" for="name">Enter name</label>
-        <InputText id="name"  @bind-Value="user.Name" />
-    </div>
-    <div>
-        <label style="width:100px" for="number">Enter number</label>
-        <InputText id="number"  @bind-Value="user.Number" />
-    </div>
-    <div>
-        <label style="width:100px" for="email">Enter email</label>
-        <InputText id="email"  @bind-Value="user.Email" />
-    </div>
-    <button style="width:fit-content" type="submit">Submit</button>
-</EditForm>
+<div class="formContact">
+    <EditForm Model="@user" OnValidSubmit="updateUser">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="inputForm">
+            <label style="width:100px" for="name">Enter name</label>
+            <InputText id="name" @bind-Value="user.Name" />
+        </div>
+        <div class="inputForm">
+            <label style="width:100px" for="number">Enter number</label>
+            <InputText id="number" @bind-Value="user.Number" />
+        </div>
+        <div class="inputForm">
+            <label style="width:100px" for="email">Enter email</label>
+            <InputText id="email" @bind-Value="user.Email" />
+        </div>
+        <button class="btnSubmit" type="submit">Submit</button>
+    </EditForm>
+</div>
 
 @code {
     [Parameter]

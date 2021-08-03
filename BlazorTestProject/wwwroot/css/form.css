@@ -1,0 +1,76 @@
+.formContact {
+    margin-left: 40px; 
+    width:700px;
+    height: auto;
+    padding:20px;
+    background-color: #ffffff;
+    border: 2px solid #D4D4D4;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #A9A9A9;
+}
+.inputForm {
+    margin : 15px;
+}
+.btnSubmit {
+    margin-left : 15px;
+    margin-bottom : 15px;
+}
+.radioGroup {
+    color: #48606c;
+    margin: 8px 0;
+    font-size: 18px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.searchInput {
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #479cc8;
+    font-size: 20px;
+}
+.btnMother{
+    display:flex;
+    width:100%;
+    justify-content:flex-end;
+    margin-top:40px;
+}
+.btnSubmit {
+    background-color: #479cc8;
+    background-position: right center;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: fit-content;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-left: auto;
+    font-size: 1.0625rem;
+    font-weight: normal;
+    padding: 0 1.5rem;
+    height: 2.1875rem;
+}
+.btnSubmit:hover {
+        color: #fff;
+        border-color: #545b62;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0.1)));
+        background-image: -o-linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+        background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+        -webkit-box-shadow: inset 0 -3px 0 0 rgb(255 255 255 / 20%);
+        box-shadow: inset 0 -3px 0 0 rgb(255 255 255 / 20%);
+    }
+
+.searchForm {
+    padding: 20px;
+    margin-left: 40px;
+    width: 300px;
+    height: auto;
+    margin-top: 25px;
+    background-color: #ffffff;
+    border: 2px solid #D4D4D4;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #A9A9A9;
+}

@@ -4,17 +4,17 @@
 <h1 style="text-align: center">Contact</h1>
 <h2>@test</h2>
 
-<RadzenDataGrid AllowColumnResize="true" PageSize="6" AllowPaging="true" Data="@users" TItem="User" ColumnWidth="300px">
+<RadzenDataGrid AllowColumnResize="true" PageSize="7" AllowPaging="true" Data="@users" TItem="User" ColumnWidth="300px">
     <Columns>
-        <RadzenDataGridColumn TItem="User" Property="Name" Filterable="false" Title="Name" Frozen="true" Width="50px" TextAlign="TextAlign.Center" />
-        <RadzenDataGridColumn TItem="User" Property="Number" Filterable="false" Title="Number" Frozen="true" Width="50px" TextAlign="TextAlign.Center" />
-        <RadzenDataGridColumn TItem="User" Property="Email" Filterable="false" Title="Email" Frozen="true" Width="50px" TextAlign="TextAlign.Center" />
-        <RadzenDataGridColumn TItem="User" Property="Id" Filterable="false" Frozen="true" Width="50px" TextAlign="TextAlign.Center">
+        <RadzenDataGridColumn TItem="User" Property="Name" Filterable="false" Title="Name"  Width="50px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn TItem="User" Property="Number" Filterable="false" Title="Number"  Width="50px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn TItem="User" Property="Email" Filterable="false" Title="Email"  Width="50px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn TItem="User" Property="Id" Filterable="false"  Width="50px" TextAlign="TextAlign.Center">
             <Template Context="data">
                 <RadzenButton ButtonStyle="ButtonStyle.Secondary" Click=@(() =>editUser(data.Id))  Text="Edit" />
             </Template>
         </RadzenDataGridColumn>
-        <RadzenDataGridColumn TItem="User" Property="Id" Frozen="true" Width="50px">
+        <RadzenDataGridColumn TItem="User" Property="Id"  Width="50px">
             <Template Context="data">
                 <RadzenButton ButtonStyle="ButtonStyle.Danger" Click=@(() => removeUser(data.Id))  Text="Remove" />
             </Template>
@@ -26,14 +26,17 @@
     string test = "";
     UserDAO dAO = new UserDAO();
     List<User> users = new List<User>();
+
     protected override void OnInitialized()
     {
         users = dAO.takeListOfUser();
     }
+
     void editUser(int id)
     {
         NavigationManager.NavigateTo("/useredit/" + id.ToString());
     }
+
     void removeUser(int id)
     {
         dAO.removeUser(id);

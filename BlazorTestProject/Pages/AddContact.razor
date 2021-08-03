@@ -1,23 +1,25 @@
 ﻿@page "/new"
 <h1 style="text-align: center">Add new Contact</h1>
 
-<div style="margin-left:40px;">
+<div class="formContact">
     <EditForm Model="@user" OnValidSubmit="addUser">
         <DataAnnotationsValidator />
         <ValidationSummary />
-        <div>
+        <div class="inputForm">
             <label style="width:100px" for="name">Enter name</label>
             <InputText id="name" @bind-Value="user.Name" />
         </div>
-        <div>
+        <div class="inputForm">
             <label style="width:100px" for="number">Enter number</label>
             <InputText id="number" @bind-Value="user.Number" />
         </div>
-        <div>
+        <div class="inputForm">
             <label style="width:100px" for="email">Enter email</label>
             <InputText id="email" @bind-Value="user.Email" />
         </div>
-        <button style="width:fit-content" type="submit">Submit</button>
+        <div class="btnMother">
+            <button class="btnSubmit" type="submit">Submit</button>
+        </div>
     </EditForm>
 </div>
 
