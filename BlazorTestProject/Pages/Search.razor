@@ -2,7 +2,7 @@
 
 <h1 style="text-align: center">Search</h1>
 <div class="searchForm">
-        <input class="searchInput" placeholder="Enter your value" id="value" @bind-value="@value" />
+    <input class="searchInput" placeholder="Enter your value" id="value" @bind-value="@value" />
     @foreach (var item in new string[] { "Name", "Number", "Email" })
     {
         <div class="radioGroup">
@@ -10,39 +10,22 @@
             <label for="@item">@item</label>
         </div>
     }
-<div class="btnMother">
-    <button class="btnSubmit" type="submit" @onclick="Click">Submit</button>
-</div>
+    <div class="btnMother">
+        <button class="btnSubmit" type="submit" @onclick="Click">Submit</button>
+    </div>
 </div>
 
-
-@if (!@check) {
+@if (!@check)
+{
     <h2 style="text-align: center">Contact not found</h2>
 }
-<div class="container" style="margin-top:25px;">
-    <table class="table table-striped table-bordered">
-        <thead>
-            <tr>
-                @if (users.Any())
-                {
-                    <th>Name</th>
-                    <th>Number</th>
-                    <th>Email</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in users)
-            {
-            <tr>
-                <td>@user.Name</td>
-                <td>@user.Number</td>
-                <td>@user.Email</td>
-            </tr>
-            }
-        </tbody>
-    </table>
-</div>
+    <RadzenDataGrid Visible="@users.Any()" AllowColumnResize="true" PageSize="4" AllowPaging="true" Data="@users" TItem="User" ColumnWidth="300px">
+        <Columns>
+            <RadzenDataGridColumn TItem="User" Property="Name" Filterable="false" Title="Name" Width="50px" TextAlign="TextAlign.Center" />
+            <RadzenDataGridColumn TItem="User" Property="Number" Filterable="false" Title="Number" Width="50px" TextAlign="TextAlign.Center" />
+            <RadzenDataGridColumn TItem="User" Property="Email" Filterable="false" Title="Email" Width="50px" TextAlign="TextAlign.Center" />
+        </Columns>
+    </RadzenDataGrid>
 
 @code{
     UserDAO dAO = new UserDAO();

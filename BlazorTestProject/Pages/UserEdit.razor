@@ -7,18 +7,20 @@
         <DataAnnotationsValidator />
         <ValidationSummary />
         <div class="inputForm">
-            <label style="width:100px" for="name">Enter name</label>
+            <label class="labelForm" for="name">Enter name</label>
             <InputText id="name" @bind-Value="user.Name" />
         </div>
         <div class="inputForm">
-            <label style="width:100px" for="number">Enter number</label>
+            <label class="labelForm" for="number">Enter number</label>
             <InputText id="number" @bind-Value="user.Number" />
         </div>
         <div class="inputForm">
-            <label style="width:100px" for="email">Enter email</label>
+            <label class="labelForm" for="email">Enter email</label>
             <InputText id="email" @bind-Value="user.Email" />
         </div>
-        <button class="btnSubmit" type="submit">Submit</button>
+        <div class="btnMother">
+            <button class="btnSubmit" type="submit">Submit</button>
+        </div>
     </EditForm>
 </div>
 
