@@ -1,24 +1,27 @@
 ﻿@page "/search"
 
 <h1 style="text-align: center">Search</h1>
-<div class="searchForm">
-    <input class="searchInput" placeholder="Enter your value" id="value" @bind-value="@value" />
-    @foreach (var item in new string[] { "Name", "Number", "Email" })
+    <div class="searchForm">
+        <input class="searchInput" placeholder="Enter your value" id="value" @bind-value="@value" />
+        @foreach (var item in new string[] { "Name", "Number", "Email" })
+        {
+            <div class="radioGroup">
+                <input type="radio" value="@item" @onchange="RadioSelection" 
+                       checked=@(RadioValue.Equals(item,StringComparison.OrdinalIgnoreCase)) />
+                <label for="@item">@item</label>
+            </div>
+        }
+        <div class="btnMother">
+            <button class="btnSubmit" type="submit" @onclick="Click">Submit</button>
+        </div>
+    </div>
+
+    @if (!@check)
     {
-        <div class="radioGroup">
-            <input type="radio" value="@item" @onchange="RadioSelection" checked=@(RadioValue.Equals(item,StringComparison.OrdinalIgnoreCase)) />
-            <label for="@item">@item</label>
+        <div class="contactNotFound">
+            <h2>Contact not found</h2>
         </div>
     }
-    <div class="btnMother">
-        <button class="btnSubmit" type="submit" @onclick="Click">Submit</button>
-    </div>
-</div>
-
-@if (!@check)
-{
-    <h2 style="text-align: center">Contact not found</h2>
-}
     <RadzenDataGrid Visible="@users.Any()" AllowColumnResize="true" PageSize="4" AllowPaging="true" Data="@users" TItem="User" ColumnWidth="300px">
         <Columns>
             <RadzenDataGridColumn TItem="User" Property="Name" Filterable="false" Title="Name" Width="50px" TextAlign="TextAlign.Center" />

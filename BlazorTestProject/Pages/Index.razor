@@ -1,8 +1,7 @@
 ﻿@page "/"
 @inject NavigationManager NavigationManager
 
-<h1 style="text-align: center">Contact</h1>
-<h2>@test</h2>
+<h1 style="text-align: center; margin-bottom:20px;">Contact</h1>
 
 <RadzenDataGrid AllowColumnResize="true" PageSize="7" AllowPaging="true" Data="@users" TItem="User" ColumnWidth="300px">
     <Columns>
@@ -23,7 +22,6 @@
 </RadzenDataGrid>
 
 @code {
-    string test = "";
     UserDAO dAO = new UserDAO();
     List<User> users = new List<User>();
 

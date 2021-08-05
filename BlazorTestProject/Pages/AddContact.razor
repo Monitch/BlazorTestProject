@@ -7,15 +7,15 @@
         <ValidationSummary />
         <div class="inputForm">
             <label class="labelForm" for="name">Enter name</label>
-            <InputText id="name" @bind-Value="user.Name" />
+            <InputText class="inputField"  id="name" @bind-Value="user.Name" />
         </div>
         <div class="inputForm">
             <label class="labelForm" for="number">Enter number</label>
-            <InputText id="number" @bind-Value="user.Number" />
+            <InputText class="inputField" id="number" @bind-Value="user.Number" />
         </div>
         <div class="inputForm">
             <label class="labelForm" for="email">Enter email</label>
-            <InputText id="email" @bind-Value="user.Email" />
+            <InputText class="inputField" id="email" @bind-Value="user.Email" />
         </div>
         <div class="btnMother">
             <button class="btnSubmit" type="submit">Submit</button>
@@ -23,10 +23,12 @@
     </EditForm>
 </div>
 
-    @if (putMessage != "")
-    {
-        <h5 style="text-align: center">@putMessage Added</h5>
-    }
+@if (putMessage != "")
+{
+    <div class="addContactText">
+        <h5>@putMessage Added</h5>
+    </div>
+}
 
 @code {
     User user = new User();

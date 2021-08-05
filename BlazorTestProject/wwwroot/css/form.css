@@ -1,8 +1,8 @@
 .formContact {
-    margin-top: 40px;
+    margin-top: 30px;
     margin-left: 40px;
     margin-bottom: 40px;
-    width: 700px;
+    width: 500px;
     height: auto;
     padding: 30px;
     background-color: #ffffff;
@@ -13,6 +13,10 @@
 .inputForm {
     margin: 15px;
     color: #48606c;
+}
+.inputField {
+    border: 2px solid #479cc8;
+    border-radius: 5px;
 }
 .btnSubmit {
     margin-left : 15px;
@@ -73,7 +77,7 @@
     width: 300px;
     height: auto;
     margin-top: 25px;
-    margin-bottom:50px;
+    margin-bottom:25px;
     background-color: #ffffff;
     border: 2px solid #D4D4D4;
     border-radius: 10px;
@@ -81,4 +85,28 @@
 }
 .labelForm {
     width: 120px;
+}
+.contactNotFound {
+    margin-left:40%;
+    width: fit-content;
+    padding: 8px;
+    color: white;
+    background-color: firebrick;
+    border: 2px solid #D4D4D4;
+    border-radius: 10px;
+    text-align: center;
+}
+.addContactText {
+    width: fit-content;
+    margin-left: 55px;
+    padding: 8px;
+    color: white;
+    background-color: forestgreen;
+    border: 2px solid #D4D4D4;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 40%;
+}
+h1 {
+color: #48606c;
 }
