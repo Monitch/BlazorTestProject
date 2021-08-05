@@ -108,5 +108,15 @@
     margin-left: 40%;
 }
 h1 {
-color: #48606c;
+    color: #48606c;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.cardDiv {
+    width: 500px;
+    margin-bottom: 20px;
+    height: 450px;
+    margin-left: 50px;
+    border: 2px solid #D4D4D4;
+    box-shadow: 0 0 15px #A9A9A9;
 }

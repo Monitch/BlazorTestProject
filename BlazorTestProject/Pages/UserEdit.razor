@@ -1,6 +1,7 @@
 ﻿@page "/useredit/{Id}"
 @inject NavigationManager NavigationManager
-<h1 style="text-align: center">Edit contact</h1>
+
+<h1>Edit contact</h1>
 
 <div class="formContact">
     <EditForm Model="@user" OnValidSubmit="updateUser">
@@ -29,7 +30,6 @@
     public String Id { set; get; }
     User user = new User();
     UserDAO dAO = new UserDAO();
-
 
     protected override void OnInitialized()
     {
