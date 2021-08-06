@@ -1,31 +1,35 @@
 ﻿@page "/card"
-<h1>Card</h1>
+<h1>Random User Card</h1>
 <div class="cardDiv">
     <RadzenCard>
         <div class="row">
             <div class="col-md-6">
                 <div>Id:</div>
-                <b>@user.Id</b>
-                <div style="margin-top:20px">Name</div>
-                <b>@user.Name</b>
+                <b>@randomUser.Id</b>
+                <div style="margin-top:20px">Name:</div>
+                <b>@randomUser.Name</b>
                 <RadzenImage Path="https://www.pixsy.com/wp-content/uploads/2021/04/ben-sweet-2LowviVHZ-E-unsplash-1.jpeg"
-                             Style="width:400px; margin-top:20px;" />
+                             Style="width:425px; margin-top:20px;" />
             </div>
             <div class="col-md-6">
                 <div>Number:</div>
-                <b>@user.Number</b>
+                <b>@randomUser.Number</b>
                 <div style="margin-top:20px">Email:</div>
-                <b>@user.Email</b>
+                <b>@randomUser.Email</b>
             </div>
         </div>
     </RadzenCard>
 </div>
 
 @code {
-    User user = new User();
+    List<User> user = new List<User>();
     UserDAO dAO = new UserDAO();
+    Random rnd = new Random();
+    User randomUser = new User();
+
     protected override void OnInitialized()
     {
-        user = dAO.getUserForEditing(17);
+        user = dAO.takeListOfUser();
+        randomUser = user[rnd.Next(0, user.Count())];
     }
 }

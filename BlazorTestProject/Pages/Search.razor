@@ -22,7 +22,8 @@
             <h2>Contact not found</h2>
         </div>
     }
-    <RadzenDataGrid Visible="@users.Any()" AllowColumnResize="true" PageSize="4" AllowPaging="true" Data="@users" TItem="User" ColumnWidth="300px">
+    <RadzenDataGrid Visible="@users.Any()" AllowColumnResize="true" PageSize="4" 
+                    AllowPaging="true" Data="@users" TItem="User" ColumnWidth="300px">
         <Columns>
             <RadzenDataGridColumn TItem="User" Property="Name" Filterable="false" Title="Name" Width="50px" TextAlign="TextAlign.Center" />
             <RadzenDataGridColumn TItem="User" Property="Number" Filterable="false" Title="Number" Width="50px" TextAlign="TextAlign.Center" />

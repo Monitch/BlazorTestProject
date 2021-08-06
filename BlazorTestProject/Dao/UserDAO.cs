@@ -6,7 +6,10 @@ namespace BlazorTestProject.Dao
 {
     public class UserDAO
     {
-        static string connectionString = "Data Source=DESKTOP-3D3OK6O\\MSQL;Initial Catalog=contact;Integrated Security=True";
+        //DB2019
+        //static string connectionString = "Data Source=DESKTOP-3D3OK6O\\MSQL;Initial Catalog=contact;Integrated Security=True";
+        //DB2005
+        static string connectionString = "Data Source=DESKTOP-3D3OK6O\\SQLEXPRESS;Initial Catalog=contact;Integrated Security=True";
         SqlConnection connection = new SqlConnection(connectionString);
 
         public List<User> takeListOfUser()
